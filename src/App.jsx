@@ -63,10 +63,20 @@ const Search = () => {
     console.log(event.target.value);
   };
 
+  const handleBlur = (event) => {
+    //event description
+    console.log(event);
+  };
+
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleChange}></input>
+      <input
+        id="search"
+        type="text"
+        onChange={handleChange}
+        onBlur={handleBlur}
+      ></input>
     </div>
   );
 };
