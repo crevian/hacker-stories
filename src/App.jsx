@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -58,17 +59,28 @@ const Item = (props) => {
 };
 
 const Search = () => {
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   const handleChange = (event) => {
-    // event description
-    console.log(event);
-    // value of target
-    console.log(event.target.value);
+    setSearchTerm(event.target.value);
+    console.log("Im handling a change");
+
+    return (
+      <div>
+        <label htmlFor="search">Search: </label>
+        <input id="search" type="text" onChange={handleChange}></input>
+        <hr />
+        <p>
+          Searching for <strong>{searchTerm}</strong>
+        </p>
+      </div>
+    );
   };
 
-  const handleBlur = (event) => {
-    //event description
-    console.log(event);
-  };
+  // const handleBlur = (event) => {
+  //   //event description
+  //   console.log(event);
+  // };
 
   return (
     <div>
@@ -77,7 +89,7 @@ const Search = () => {
         id="search"
         type="text"
         onChange={handleChange}
-        onBlur={handleBlur}
+        // onBlur={handleBlur}
       ></input>
     </div>
   );
