@@ -3,27 +3,25 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-const list = [
-  {
-    title: "React",
-    url: "https://reactjs.org",
-    author: "Jordan",
-    num_comments: 3,
-    points: 4,
-    objectId: 0,
-  },
-  {
-    title: "Redux",
-    url: "https://redux.js.org",
-    author: "Dan Abramov, Andrew Clark",
-    num_comments: 2,
-    points: 5,
-    objectId: 1,
-  },
-];
-
 const App = () => {
-  const [count, setCount] = useState(0);
+  const stories = [
+    {
+      title: "React",
+      url: "https://reactjs.org",
+      author: "Jordan",
+      num_comments: 3,
+      points: 4,
+      objectId: 0,
+    },
+    {
+      title: "Redux",
+      url: "https://redux.js.org",
+      author: "Dan Abramov, Andrew Clark",
+      num_comments: 2,
+      points: 5,
+      objectId: 1,
+    },
+  ];
 
   return (
     <div>
@@ -31,27 +29,31 @@ const App = () => {
 
       <Search />
       <hr />
-      <List />
+      <List list={stories} />
     </div>
   );
 };
 
-const List = () => {
+const List = (props) => {
   return (
     <ul>
-      {list.map(function (item) {
-        return (
-          <li key={item.objectId}>
-            <span>
-              <a href="{item.url}">{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-          </li>
-        );
+      {props.list.map(function (item) {
+        return <Item key={item.objectId} item={item} />;
       })}
     </ul>
+  );
+};
+
+const Item = (props) => {
+  return (
+    <li>
+      <span>
+        <a href={props.item.url}> {props.item.title} </a>
+      </span>
+      <span>{props.item.author}</span>
+      <span>{props.item.num_comments}</span>
+      <span>{props.item.points}</span>
+    </li>
   );
 };
 
