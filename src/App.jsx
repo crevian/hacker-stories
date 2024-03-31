@@ -24,11 +24,15 @@ const App = () => {
     },
   ];
 
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search />
+      <Search onSearch={handleSearch} />
       <hr />
       <List list={stories} />
     </div>
@@ -58,24 +62,25 @@ const Item = (props) => {
   );
 };
 
-const Search = () => {
+const Search = (props) => {
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    console.log("Im handling a change");
-
-    return (
-      <div>
-        <label htmlFor="search">Search: </label>
-        <input id="search" type="text" onChange={handleChange}></input>
-        <hr />
-        <p>
-          Searching for <strong>{searchTerm}</strong>
-        </p>
-      </div>
-    );
+    props.onSearch(event);
   };
+
+  //   return (
+  //     <div>
+  //       <label htmlFor="search">Search: </label>
+  //       <input id="search" type="text" onChange={handleChange}></input>
+  //       <hr />
+  //       <p>
+  //         Searching for <strong>{searchTerm}</strong>
+  //       </p>
+  //     </div>
+  //   );
+  // };
 
   // const handleBlur = (event) => {
   //   //event description
