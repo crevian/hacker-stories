@@ -45,28 +45,31 @@ const App = () => {
   );
 };
 
-const List = (props) => {
-  return (
-    <ul>
-      {props.list.map(function (item) {
-        return <Item key={item.objectId} item={item} />;
-      })}
-    </ul>
-  );
-};
+const List = ({ list }) => (
+  <ul>
+    {list.map((item) => (
+      <Item
+        key={item.objectId}
+        title={item.title}
+        url={item.url}
+        author={item.author}
+        num_comments={item.num_comments}
+        points={item.points}
+      />
+    ))}
+  </ul>
+);
 
-const Item = (props) => {
-  return (
-    <li>
-      <span>
-        <a href={props.item.url}> {props.item.title} </a>
-      </span>
-      <span>{props.item.author}</span>
-      <span>{props.item.num_comments}</span>
-      <span>{props.item.points}</span>
-    </li>
-  );
-};
+const Item = ({ title, url, author, num_comments, points }) => (
+  <li>
+    <span>
+      <a href={url}> {title} </a>
+    </span>
+    <span>{author}</span>
+    <span>{num_comments}</span>
+    <span>{points}</span>
+  </li>
+);
 
 const Search = (props) => {
   return (
