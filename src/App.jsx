@@ -4,16 +4,16 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-const useStorageState = (initialState) => {
-  const [searchTerm, setSearchTerm] = React.useState(
-    localStorage.getItem("search")
+const useStorageState = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
   );
 
   React.useEffect(() => {
-    localStorage.setItem("search", searchTerm);
-  }, [searchTerm]);
+    localStorage.setItem(key, value);
+  }, [value, key]);
 
-  return [searchTerm, setSearchTerm];
+  return [value, setValue];
 };
 
 const App = () => {
@@ -36,7 +36,7 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = useStorageState("React");
+  const [searchTerm, setSearchTerm] = useStorageState("search", "React");
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
