@@ -54,12 +54,32 @@ const App = () => {
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search search={searchTerm} onSearch={handleSearch} />
+      <InputWithLabel
+        id="search"
+        value={searchTerm}
+        onInputChange={handleSearch}
+      >
+        Search:
+      </InputWithLabel>
+
       <hr />
       <List list={searchedStories} />
     </div>
   );
 };
+
+const InputWithLabel = ({
+  id,
+  value,
+  type = "text",
+  onInputChange,
+  children,
+}) => (
+  <>
+    <label htmlFor={id}> {children} </label>
+    <input id={id} type="text" value={value} onChange={onInputChange} />
+  </>
+);
 
 const List = ({ list }) => (
   <ul>
